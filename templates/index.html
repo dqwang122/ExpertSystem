@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Expert System</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Expert System v1.0</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        穿衣指南
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <form role="form" action="" method="POST" onsubmit="return checkempty();">
+									<h4>天气情况</h4>
+                                    <div class="form-group">
+                                        <label>天气</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="weather" id="weather1" value="option1" checked>晴朗
+                                        </label>
+										<label class="radio-inline">
+                                            <input type="radio" name="weather" id="weather2" value="option2">阴天
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="weather" id="weather3" value="option3">下雨
+                                        </label>
+                                    </div>
+									<div class="form-group">
+                                        <label>气温</label>
+                                        <input class="form-control" name = "temperature" id = "temperature" placeholder="℃">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>湿度</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="humidity" id="humidity1" value="option1">干燥
+                                        </label>
+										<label class="radio-inline">
+                                            <input type="radio" name="humidity" id="humidity2" value="option2" checked>正常
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="humidity" id="humidity3" value="option3">潮湿
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>风力</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="wind" id="wind1" value="option1">小
+                                        </label>
+										<label class="radio-inline">
+                                            <input type="radio" name="wind" id="wind2" value="option2" checked>正常
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="wind" id="wind3" value="option3">大
+                                        </label>
+                                    </div>
+									<h4>个性定制</h4>
+                                    <div class="form-group">
+                                        <label>性别</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="gender" id="gender1" value="option1">男
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="gender" id="gender2" value="option2">女
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>你对温度敏感吗？</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="cold" id="cold1" value="option1">一般
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="cold" id="cold2" value="option2">很怕冷
+                                        </label>
+                                    </div>
+									<div class="form-group">
+                                        <label>你偏好什么风格的衣服？</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="style" id="style1" value="option1">正式
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="style" id="style2" value="option2">休闲
+                                        </label>
+                                    </div>
+                                    <button type="submit" name="submit" value="infer" class="btn btn-info btn-circle btn"><i class="fa fa-check"></i></button>
+                                    <button type="reset" name="reset" class="btn btn-warning btn-circle btn"><i class="fa fa-times"></i></button>
+                                </form>
+
+
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                            <div class="col-lg-6">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>专家建议</label>
+                                        <textarea class="form-control" rows="17">{{Suggestion}}</textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                        </div>
+                         <!--/.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+
+            <div class="col-lg-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        专家解释
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>规则匹配</label>
+                                        <textarea class="form-control" rows="10">{{Rules}}</textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                            <div class="col-lg-6">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>规则解释</label>
+                                        <textarea class="form-control" rows="10">{{Description}}</textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                        </div>
+                        <!-- /.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+			
+			 <div class="col-lg-12">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        知识库管理
+                    </div>
+                    <div class="panel-body">
+                        <!-- Nav tabs -->
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#check" data-toggle="tab" aria-expanded="true">查看</a>
+							</li>
+							<li><a href="#add" data-toggle="tab" aria-expanded="false">增加</a>
+							</li>
+							<li><a href="#delete" data-toggle="tab" aria-expanded="false">删除</a>
+							</li>
+							<li><a href="#modify" data-toggle="tab" aria-expanded="false">修改</a>
+							</li>
+						</ul>
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div class="tab-pane fade active in" id="check">
+								<div class="col-sm-10">
+									<h4>知识库</h4>
+									<label>规则列表</label>
+									{% if all %}
+										<textarea type = 'text' name = "all" id = "all" class="form-control" rows="20">{{ all }}</textarea>
+									{% else %}
+										<textarea type = 'text' name = "all" id = "all" class="form-control" rows="5">{{ all }}</textarea>
+									{% endif %}
+									<form role="form" action="" method="POST">
+										<div class="form-group">
+										<button type="submit" name="submit" value="all_check" class="btn btn-success col-sm-2">展示</button>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="add">
+								<div class="col-sm-10">
+									<h4>新增规则</h4>
+									<form role="form" action="" method="POST" enctype="multipart/form-data">
+										<div class="form-group">
+											<label>条件</label>
+											<input class="form-control" id="add_condition" name="add_condition">
+										</div>
+										<div class="form-group">
+											<label>结论</label>
+											<input class="form-control" id="add_result" name="add_result">
+										</div>
+										<div class="form-group">
+											<label>描述</label>
+											<input class="form-control" id="add_description" name="add_description">
+										</div>
+										
+										<button type="submit" name="submit" value="add" class="btn btn-success col-sm-2">添加</button>
+									</form>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="delete">
+								<div class="col-sm-10">
+									<h4>删除规则</h4>
+									<form role="form" action="" method="POST">
+										<div class="form-group">
+											<label>ID</label>
+											<input class="form-control" id="delete_id" name="delete_id">
+										</div>													
+										<button type="submit" name="submit" value="delete" class="btn btn-success col-sm-2">删除</button>
+									</form>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="modify">
+								<div class="col-sm-10">
+									<h4>修改规则</h4>
+									<form role="form" action="" method="POST" enctype="multipart/form-data">
+										<div class="form-group">
+											<label>ID</label>
+											<input class="form-control" id="modify_id" name="modify_id">
+										</div>
+										<div class="form-group">
+											<label>条件</label>
+											<input class="form-control" id="modify_condition" name="modify_condition">
+										</div>
+										<div class="form-group">
+											<label>结论</label>
+											<input class="form-control" id="modify_result" name="modify_result">
+										</div>
+										<div class="form-group">
+											<label>描述</label>
+											<input class="form-control" id="modify_description" name="modify_description">
+										</div>
+										<button type="submit" name="submit" value="modify" class="btn btn-success col-sm-2">修改</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+
+    <!-- jQuery -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../static/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../static/dist/js/sb-admin-2.js"></script>
+
+    <script>
+
+        function checkempty(){
+            var text = document.getElementById("temperature").value;
+            var pattern = /^(-?\d*.?\d*)$/;
+            if(text === ''){
+                alert("温度不能为空！");
+                return false;
+            }
+            else if(!pattern.test(text)){
+                alert("温度必须为数字！");
+                return false
+            }
+            else if(parseInt(text) > 100 || parseInt(text) < -100){
+                alert("请输入合理的温度！");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+</body>
+
+</html>
