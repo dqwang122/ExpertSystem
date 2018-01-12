@@ -198,15 +198,15 @@
 								<div class="col-sm-10">
 									<h4>知识库</h4>
 									<label>规则列表</label>
-									{% if all %}
-										<textarea type = 'text' name = "all" id = "all" class="form-control" rows="20">{{ all }}</textarea>
-									{% else %}
-										<textarea type = 'text' name = "all" id = "all" class="form-control" rows="5">{{ all }}</textarea>
-									{% endif %}
-									<form role="form" action="" method="POST">
-										<div class="form-group">
-										<button type="submit" name="submit" value="all_check" class="btn btn-success col-sm-2">展示</button>
-										</div>
+                                    <form role="form" action="" method="POST">
+                                        <div class="form-group">
+                                        {% if all %}
+                                            <textarea name = "all" id = "all" class="form-control" rows="20">{{ all }}</textarea>
+                                        {% else %}
+                                            <textarea name = "all" id = "all" class="form-control" rows="5">{{ all }}</textarea>
+                                        {% endif %}
+                                        </div>
+                                        <button type="submit" name="submit" value="all_check" class="btn btn-outline btn-warning">展示</button>
 									</form>
 								</div>
 							</div>
@@ -227,7 +227,8 @@
 											<input class="form-control" id="add_description" name="add_description">
 										</div>
 										
-										<button type="submit" name="submit" value="add" class="btn btn-success col-sm-2">添加</button>
+										<button type="submit" name="submit" value="add" class="btn btn-outline btn-warning">添加</button>
+                                        <button type="submit" name="submit" value="reset" class="btn btn-outline btn-warning">撤销</button>
 									</form>
 								</div>
 							</div>
@@ -239,7 +240,8 @@
 											<label>ID</label>
 											<input class="form-control" id="delete_id" name="delete_id">
 										</div>													
-										<button type="submit" name="submit" value="delete" class="btn btn-success col-sm-2">删除</button>
+										<button type="submit" name="submit" value="delete" class="btn btn-outline btn-warning">删除</button>
+                                        <button type="submit" name="submit" value="reset" class="btn btn-outline btn-warning">撤销</button>
 									</form>
 								</div>
 							</div>
@@ -263,7 +265,8 @@
 											<label>描述</label>
 											<input class="form-control" id="modify_description" name="modify_description">
 										</div>
-										<button type="submit" name="submit" value="modify" class="btn btn-success col-sm-2">修改</button>
+										<button type="submit" name="submit" value="modify" class="btn btn-outline btn-warning">修改</button>
+                                        <button type="submit" name="submit" value="reset" class="btn btn-outline btn-warning">撤销</button>
 									</form>
 								</div>
 							</div>

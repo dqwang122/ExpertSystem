@@ -30,15 +30,49 @@ def home_data():
         ret = Interaction.GetRet(info)
 
         return render_template('index.html', Suggestion=ret[0], Rules=ret[1], Description=ret[2])
+
     elif action == "all_check":
-        
-        return render_template('index.html')
+        with open("rules/rules.txt") as f:
+            rules = f.read()
+        return render_template('index.html', all=rules.decode('utf-8'))
+
     elif action == "add":
-        return render_template('index.html')
+        rule = {}
+        rule["condition"] = request.form.get("add_condition")
+        rule["result"] = request.form.get("add_result")
+        rule["description"] = request.form.get("add_description")
+        Interaction.AddRule(rule)
+
+        with open("rules/rules.txt") as f:
+            rules = f.read()
+        return render_template('index.html', all=rules.decode('utf-8'))
+
     elif action == "delete":
-        return render_template('index.html')
+        id = request.form.get("delete_id")
+        Interaction.DeleteRule(int(id))
+
+        with open("rules/rules.txt") as f:
+            rules = f.read()
+        return render_template('index.html', all=rules.decode('utf-8'))
+
     elif action == "modify":
-        return render_template('index.html')
+        rule = {}
+        rule["id"] = int(request.form.get("modify_id"))
+        rule["condition"] = request.form.get("modify_condition")
+        rule["result"] = request.form.get("modify_result")
+        rule["description"] = request.form.get("modify_description")
+        Interaction.ModifyRule(rule)
+
+        with open("rules/rules.txt") as f:
+            rules = f.read()
+        return render_template('index.html', all=rules.decode('utf-8'))
+
+    elif action == "reset":
+        Interaction.Reset()
+        with open("rules/rules.txt") as f:
+            rules = f.read()
+        return render_template('index.html', all=rules.decode('utf-8'))
+
     else:
         return render_template('index.html')
 

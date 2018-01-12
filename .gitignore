@@ -1,0 +1,9 @@
+#idea
+.idea/
+
+#ipython
+.ipynb_checkpoints/
+rules/.ipynb_checkpoints/
+
+#.pyc
+*.pyc

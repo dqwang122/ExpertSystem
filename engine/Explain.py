@@ -24,11 +24,11 @@ def GeneratorExplaintion(activerules):
 def PrintRules(activerules):
     rulesprint = ""
     for r in activerules:
-        rulesprint += "Rule " + r["id"] + ":\n"
+        rulesprint += "Rule " + str(r["id"]) + ":\n"
         rulesprint += "IF "
         for i in range(0,len(r["condition"])):
             if i != len(r["condition"]) - 1:
-                rulesprint += r["condition"][i] + "AND"
+                rulesprint += r["condition"][i] + " AND "
             else:
                 rulesprint += r["condition"][i] + "\n"
         rulesprint += "THEN " + r["result"] + "\n"
