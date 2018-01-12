@@ -34,22 +34,28 @@ def DealConflict(curactiverules, visit):
     cond = set(activerule["condition"])
     for r in curactiverules:
         if r != activerule and set(r["condition"]).issubset(cond):
-            visit.append(r)
+            if r["id"] <= 24 :
+                if activerule["id"] <= 24:
+                    visit.append(r)
 
     return activerule
 
 def GetResult(activerule):
     ret = set([])
+    activerule = sorted(activerule, key=lambda d: d["id"])
     for r in activerule:
+        print r["id"]
         if r["result"].startswith("level"):
             continue
         result = set(r["result"].split(u"、"))
-        if(len(result) > 1 and len(ret) > 0):
+        print r["result"]
+        if(len(ret) == 0):
+            ret |= result
+        elif(len(result) > 1):
             ret &= result
         else:
             ret |= result
 
-    print ret
     suggestion = ""
     for r in ret:
         suggestion += r + "\n"

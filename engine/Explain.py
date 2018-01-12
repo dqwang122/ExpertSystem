@@ -8,7 +8,7 @@ def GeneratorExplaintion(activerules):
     for r in activerules:
         if not r["result"].startswith("level"):
             description += u"因为 " + r["description"] + "\n"
-            description += u"而您希望 "
+            description += u"而您希望在 "
             if u"体弱" in r["condition"]:
                 description += u"保暖一些 "
             for cond in r["condition"]:
@@ -18,7 +18,7 @@ def GeneratorExplaintion(activerules):
                 description += u"的男士服装"
             elif u"女" in r["condition"]:
                 description += u"的女士服装"
-            description += u"\n所以建议你穿 " + r["result"]
+            description += u" 的条件下\n所以建议你穿 " + r["result"] + "\n"
     return description
 
 def PrintRules(activerules):
