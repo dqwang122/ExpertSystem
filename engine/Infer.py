@@ -1,4 +1,6 @@
 # -*- coding: UTF-8 -*-
+import re
+
 def forwardInfer(rules, facts):
     stop = False
     factSet = set(facts)
@@ -6,6 +8,7 @@ def forwardInfer(rules, facts):
     activerules = []
     while not stop :
         curactiverules = []
+        print visit
         for r in rules:
             if r in visit:
                 continue
@@ -26,10 +29,12 @@ def DealConflict(curactiverules, visit):
     maxMatch = 0
     activerule = curactiverules[0]
     for r in curactiverules:
+        print r["condition"]
         if len(r["condition"]) > maxMatch:
-            maxMatch = len(["condition"])
+            maxMatch = len(r["condition"])
             activerule = r
 
+    print maxMatch
     visit.append(activerule)
     cond = set(activerule["condition"])
     for r in curactiverules:
@@ -37,6 +42,8 @@ def DealConflict(curactiverules, visit):
             if r["id"] <= 24 :
                 if activerule["id"] <= 24:
                     visit.append(r)
+            else:
+                visit.append(r)
 
     return activerule
 
@@ -44,10 +51,9 @@ def GetResult(activerule):
     ret = set([])
     activerule = sorted(activerule, key=lambda d: d["id"])
     for r in activerule:
-        print r["id"]
         if r["result"].startswith("level"):
             continue
-        result = set(r["result"].split(u"、"))
+        result = set(re.split(u"、|。", r["result"]))
         print r["result"]
         if(len(ret) == 0):
             ret |= result
@@ -55,6 +61,7 @@ def GetResult(activerule):
             ret &= result
         else:
             ret |= result
+
 
     suggestion = ""
     for r in ret:

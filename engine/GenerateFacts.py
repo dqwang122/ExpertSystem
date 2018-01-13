@@ -2,7 +2,7 @@
 def GetFacts(info):
     facts = []
     if info['weather'] == "option1":
-        facts.append(u"天气：晴朗")
+        facts.append(u"天气：晴好")
     elif info['weather'] == "option2":
         facts.append(u"天气：阴天")
     else:
@@ -61,5 +61,7 @@ def GetFacts(info):
     elif info['style'] == "option2":
         facts.append(u"休闲")
 
+    for f in facts:
+        print f + " "
 
     return facts

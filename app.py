@@ -21,7 +21,7 @@ def home_data():
         info = {}
         info['weather'] = request.form.get("weather")
         info['temperature'] = request.form.get("temperature")
-        info['humidity'] = request.form.get("temperature")
+        info['humidity'] = request.form.get("humidity")
         info['wind'] = request.form.get("wind")
         info['gender'] = request.form.get("gender")
         info['cold'] = request.form.get("cold")

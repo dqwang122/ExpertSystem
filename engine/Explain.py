@@ -15,9 +15,9 @@ def GeneratorExplaintion(activerules):
                 if cond != u"体弱" and cond != u"男" and cond != u"女" and not cond.startswith("level"):
                     description += cond + " "
             if u"男" in r["condition"]:
-                description += u"的男士服装"
+                description += u"男士服装"
             elif u"女" in r["condition"]:
-                description += u"的女士服装"
+                description += u"女士服装"
             description += u" 的条件下\n所以建议你穿 " + r["result"] + "\n"
     return description
 
