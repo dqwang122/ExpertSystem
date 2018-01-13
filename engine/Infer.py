@@ -33,7 +33,7 @@ def DealConflict(curactiverules, visit):
     visit.append(activerule)
     cond = set(activerule["condition"])
     for r in curactiverules:
-        if r != activerule and set(r["condition"]).issubset(cond):
+        if r != activerule and set(r["condition"]).issubset(cond) and not r["condition"] == cond:
             if r["id"] <= 24 :
                 if activerule["id"] <= 24:
                     visit.append(r)

@@ -31,7 +31,7 @@
     <div class="container">
         <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Expert System v1.0</h1>
+                    <h1 class="page-header">Expert System v1.2</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -173,7 +173,7 @@
                 <!-- /.panel -->
             </div>
             <!-- /.col-lg-12 -->
-			
+
 			 <div class="col-lg-12">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
@@ -213,7 +213,7 @@
 							<div class="tab-pane fade" id="add">
 								<div class="col-sm-10">
 									<h4>新增规则</h4>
-									<form role="form" action="" method="POST" enctype="multipart/form-data">
+									<form role="form" action="" method="POST" enctype="multipart/form-data", onsubmit="return checkadd();">
 										<div class="form-group">
 											<label>条件</label>
 											<input class="form-control" id="add_condition" name="add_condition">
@@ -226,7 +226,7 @@
 											<label>描述</label>
 											<input class="form-control" id="add_description" name="add_description">
 										</div>
-										
+
 										<button type="submit" name="submit" value="add" class="btn btn-outline btn-warning">添加</button>
                                         <button type="submit" name="submit" value="reset" class="btn btn-outline btn-warning">撤销</button>
 									</form>
@@ -235,11 +235,11 @@
 							<div class="tab-pane fade" id="delete">
 								<div class="col-sm-10">
 									<h4>删除规则</h4>
-									<form role="form" action="" method="POST">
+									<form role="form" action="" method="POST" onsubmit="return checkdelete();">
 										<div class="form-group">
 											<label>ID</label>
 											<input class="form-control" id="delete_id" name="delete_id">
-										</div>													
+										</div>
 										<button type="submit" name="submit" value="delete" class="btn btn-outline btn-warning">删除</button>
                                         <button type="submit" name="submit" value="reset" class="btn btn-outline btn-warning">撤销</button>
 									</form>
@@ -248,7 +248,7 @@
 							<div class="tab-pane fade" id="modify">
 								<div class="col-sm-10">
 									<h4>修改规则</h4>
-									<form role="form" action="" method="POST" enctype="multipart/form-data">
+									<form role="form" action="" method="POST" enctype="multipart/form-data" onsubmit="return checkmotify();">
 										<div class="form-group">
 											<label>ID</label>
 											<input class="form-control" id="modify_id" name="modify_id">
@@ -296,7 +296,7 @@
     <script>
 
         function checkempty(){
-            var text = document.getElementById("temperature").value;
+            var text = $("#temperature").val();
             var pattern = /^(-?\d*.?\d*)$/;
             if(text === ''){
                 alert("温度不能为空！");
@@ -312,6 +312,55 @@
             }
             return true;
         }
+
+        function checkadd(){
+            if($("#add_condition").val() === '' || $("#add_result").val() === '' || $("#add_description").val() === ''){
+                alert("请输入正确的规则");
+                return false
+            }
+            return true
+        }
+
+        function checkdelete(){
+            var id = $("#delete_id").val();
+            var pattern = /^(-?\d*.?\d*)$/;
+            if(id === ''){
+                alert("规则编号不能为空！");
+                return false
+            }
+            else if(!pattern.test(id)){
+                alert("规则编号必须为数字！");
+                return false
+            }
+            else if(parseInt(id) <= 0){
+                alert("请输入合理规则编号！")
+            }
+            else if(parseInt(id) <= 24){
+                alert("无法删除基础规则！")
+            }
+            return true
+        }
+
+        function checkmotify(){
+            var id = $("#modify_id").val();
+            var pattern = /^(-?\d*.?\d*)$/;
+            if(id === ''){
+                alert("规则编号不能为空！");
+                return false
+            }
+            else if(!pattern.test(id)){
+                alert("规则编号必须为数字！");
+                return false
+            }
+            else if(parseInt(id) <= 0){
+                alert("请输入合理规则编号！")
+            }
+            else if(parseInt(id) <= 24){
+                alert("无法修改基础规则！")
+            }
+            return true
+        }
+
     </script>
 
 </body>
