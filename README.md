@@ -1,4 +1,4 @@
-# Expert System for Cloth Choice
+# Expert System for Clothes Choice
 人工智能A的Project，设计一个基于规则的专家系统。
 
 [toc]
