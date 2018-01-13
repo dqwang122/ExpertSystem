@@ -41,18 +41,30 @@ def home_data():
         rule["condition"] = request.form.get("add_condition")
         rule["result"] = request.form.get("add_result")
         rule["description"] = request.form.get("add_description")
-        Interaction.AddRule(rule)
+        ret = Interaction.AddRule(rule)
 
         with open("rules/rules.txt") as f:
             rules = f.read()
+
+        if ret == True:
+            flash(u"添加规则成功", 'success')
+        else:
+            flash(u"添加规则失败", 'error')
+
         return render_template('index.html', all=rules.decode('utf-8'))
 
     elif action == "delete":
         id = request.form.get("delete_id")
-        Interaction.DeleteRule(int(id))
+        ret = Interaction.DeleteRule(int(id))
 
         with open("rules/rules.txt") as f:
             rules = f.read()
+
+        if ret == True:
+            flash(u"删除规则成功", 'success')
+        else:
+            flash(u"删除规则失败", 'error')
+
         return render_template('index.html', all=rules.decode('utf-8'))
 
     elif action == "modify":
@@ -61,10 +73,16 @@ def home_data():
         rule["condition"] = request.form.get("modify_condition")
         rule["result"] = request.form.get("modify_result")
         rule["description"] = request.form.get("modify_description")
-        Interaction.ModifyRule(rule)
+        ret = Interaction.ModifyRule(rule)
 
         with open("rules/rules.txt") as f:
             rules = f.read()
+
+        if ret == True:
+            flash(u"修改规则成功", 'success')
+        else:
+            flash(u"修改规则失败", 'error')
+
         return render_template('index.html', all=rules.decode('utf-8'))
 
     elif action == "reset":

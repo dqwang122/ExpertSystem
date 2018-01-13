@@ -15,21 +15,23 @@
 ```
 ExpertSystem
 ├── docs                # 文档
-├── engine              # 专家系统核心逻辑 	
-│	├── Explain.py            # 解释设备
-│	├── GenerateFacts.py      # 构建数据库
-│	├── Infer.py              # 前向链接及冲突消解
-│	└── Interaction.py        # 前后台交互以及知识库管理
-├── rules               # 知识库 	
-│	├── backup                # 备份规则
-│	├── GetRules.ipynb        # 从rules.txt生成rule.default.json
-│	├── rules.default.json    # 当前使用的规则
-│	└── rules.txt             # 当前使用规则的文本格式
-├── static               # Web静态文件		
+├── engine              # 专家系统核心逻辑     
+│   ├── Explain.py            # 解释设备
+│   ├── GenerateFacts.py      # 构建数据库
+│   ├── Infer.py              # 前向链接及冲突消解
+│   └── Interaction.py        # 前后台交互以及知识库管理
+├── rules               # 知识库     
+│   ├── backup                # 备份规则
+│   ├── GetRules.ipynb        # 从rules.txt生成rule.default.json
+│   ├── rules.default.json    # 当前使用的规则
+│   └── rules.txt             # 当前使用规则的文本格式
+├── static               # Web静态文件        
 ├── templates            # 网页模板
-│	└── index.html            # index主页
-├── app.py               # app运行文件		
-└── README.md		# README
+│   ├── error_msg.html          # 错误消息
+│   ├── success_msg.html        # 正确消息
+│   └── index.html            # index主页
+├── app.py               # app运行文件        
+└── README.md        # README
 ```
 
 
